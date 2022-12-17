@@ -107,30 +107,37 @@ int isBalanced(Node *root)
     }
 }
 
-Node *createBST(Node *root, int data)
+void takeInput(Node *root)
 {
-    Node *temp = (Node *)malloc(sizeof(Node));
-    temp->data = data;
-    temp->left = NULL;
-    temp->right = NULL;
-    return temp;
+    int data;
+    scanf("%d",&data);
+
+    while (data != -1)
+    {
+        root = insertIntoBST(root, data);
+        scanf("%d",&data);
+    }
 }
-Node *insertInBST(Node *root, int data)
+
+Node *insertIntoBST(Node *root, int data)
 {
     if (root == NULL)
     {
-        return createBST(root, data);
+        root->data = data;
+        return root;
     }
     if (data > root->data)
     {
-        root->right = insertInBST(root->right, data);
+        root->right = insertIntoBST((root)->right, data);
     }
     else
     {
-        root->left = insertInBST(root->left, data);
+        root->left = insertIntoBST(root->left, data);
     }
+
     return root;
 }
+
 
 Node *minimumNode(Node *root)
 {
@@ -195,21 +202,8 @@ Node *delete (Node *root, int data)
 
 int main()
 {
-    Node *root = NULL;
-    // for(int i = 0;i<10;i++)
-    // {
-    //     printf("Insert data: ");
-    //     int data = scanf("%d",data);
-    //     root = insertInBST(root,data);
-    // }
-    root = insertInBST(root, 8);
-    root = insertInBST(root, 3);
-    root = insertInBST(root, 1);
-    root = insertInBST(root, 6);
-    root = insertInBST(root, 7);
-    root = insertInBST(root, 10);
-    root = insertInBST(root, 14);
-    root = insertInBST(root, 4);
+    Node *root;
+    takeInput(&root);
     printf("Inorder traversal: ");
     inorder(root);
     printf("\n");
@@ -234,7 +228,7 @@ int main()
     {
         printf("Tree is not balanced\n");
     }
-    delete (root, 1);
+    delete (root, 11);
     inorder(root);
     return 0;
 }
