@@ -18,8 +18,8 @@ Node *createNode(Node* root)
 
     // works as an constructor
     root->data = val;
-    root->left = NULL;
-    root->right = NULL;
+  oot->left = NULL;
+    root->right = NULL;  r
 
     if (val == -1)
     {
